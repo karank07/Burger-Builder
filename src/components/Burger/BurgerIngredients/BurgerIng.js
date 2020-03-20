@@ -1,35 +1,45 @@
-import react from 'react';
+import React,{Component} from 'react';
+import PropTypes from 'prop-types';
+import classes from './BurgerIng.css'
+class BurgerIng extends Component {
+    
+    render(){
+        let ing=null;
+    
+        switch(this.props.type){
+            case ('bread-bottom'):
+                ing=<div className={classes.BreadBottom}></div>;
+            break;
+            case 'bread-top':
+                ing=(
+                    <div className={classes.BreadTop}>
+                        <div className={classes.Seeds1}></div>
+                        <div className={classes.Seeds2}></div>
+                    </div>
+                );
+            break;
+            case ('meat'):
+                ing=<div className={classes.Meat}></div>;
+            break;
+            case ('cheese'):
+                ing=<div className={classes.Cheese}></div>;
+            break;
+            case ('salad'):
+                ing=<div className={classes.Salad}></div>;
+            break;
+            case ('bacon'):
+                ing =<div className={classes.Bacon}></div>;
+            break;
+            default:
+                ing=null;
+            
+        }
+        return ing;
+    };
+}  
 
-const burgerIng=(props)=>{
-    let ing=null;
-
-    switch(props.type){
-        case 'bread-bottom':
-            ing=<div className='BreadBottom'></div>;
-        break;
-        case 'bread-top':
-            ing=(
-                <div className='BreadTop'>
-                    <div className='Seeds1'></div>
-                    <div className='Seeds2'></div>
-                </div>
-            );
-        break;
-        case 'meat':
-            ing=<div className='Meat'></div>;
-        break;
-        case 'cheese':
-            ing=<div className='Cheese'></div>;
-        break;
-        case 'salad':
-            ing=<div className='Salad'></div>;
-        break;
-        case 'bacon':
-            ing =<div className='Bacon'></div>;
-        break;
-        
-    }
-    return ing;
+BurgerIng.propTypes={
+    type:PropTypes.string.isRequired
 };
 
-export default burgerIng;
+export default BurgerIng;

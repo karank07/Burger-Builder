@@ -5,9 +5,9 @@
     width: 70%;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px black;
-    padding: 16px;
+    padding: 14px;
     left: 15%;
-    top: 30%;
+    top: 20%;
     box-sizing: border-box;
     transition: all 0.3s ease-out;
 }

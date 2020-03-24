@@ -19,11 +19,11 @@
 @media (min-width: 500px) and (min-height: 401px){
     .Burger{
         height:400px ;
-        width: 450px;
+        width: 350px;
     }
 }
 
-@media (min-width: 100px) and (min-height: 700px){
+@media (min-width: 1000px) and (min-height: 700px){
     .Burger{
         height:600px ;
         width: 700px;

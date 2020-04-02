@@ -13,7 +13,7 @@ class Checkout extends Component {
         let price=0;
         for (let params of query.entries()) {
             if(params[0]==='price'){
-                price=params[1];
+                price=+params[1];
             }else{
                 ingredients[params[0]] = +params[1]
             }
@@ -35,7 +35,7 @@ class Checkout extends Component {
                     checkoutCancel={this.checkoutCancelHandler}
                     checkoutContinue={this.checkoutContinueHandler} />
                     <Route path={this.props.match.path +'/contact-data'} 
-                    render={(props)=> (<ContactData ingredients={this.state.ingredients} price={this.state.toalPrice} {...props}/>)}/>
+                    render={(props)=> (<ContactData ingredients={this.state.ingredients} price={this.state.totalPrice} {...props}/>)}/>
             </div>
         );
     }

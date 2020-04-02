@@ -13,7 +13,6 @@ const burger=(props)=>{
     if(ing.length===0){
         ing=<p>Please start adding ingredients!</p>
     }
-    console.log(ing);
     return(
         <div className={classes.Burger}>
             <BurgerIng type="bread-top" />

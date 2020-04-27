@@ -1,40 +1,43 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import axios from '../../axios-order';
 import Order from '../../components/Order/Order';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+import * as action from '../../store/actions/';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
-class Orders extends Component{
-    state={
-        orders:[],
-        loading:true
+class Orders extends Component {
+
+    componentDidMount() {
+        this.props.onFetchOrders();
     }
-    componentDidMount(){
-        axios.get('/orders.json')
-        .then(res=>{
-            const Porder=[];
-            for(let k in res.data){
-                Porder.push({
-                    ...res.data[k],
-                    id:k
-                });
-            }
-            this.setState({orders:Porder, loading:false})
-        })
-        .catch(err=>{
-            this.setState({loading:false})
-        })
-    }
-    render(){
-        return(
-            <div>
-              {this.state.orders.map(order=>(
-                  <Order key={order.id}
+    render() {
+        let orders = <Spinner />;
+        if (!this.props.loading) {
+            orders = this.props.orders.map(order => (
+                <Order key={order.id}
                     ingredients={order.ingredients}
-                    price={+order.price}/>
-              ))}
-              
+                    price={+order.price} />
+            ))
+
+        }
+        return (
+            <div>
+                {orders}
             </div>
         );
     }
 }
-export default withErrorHandler(Orders,axios);
+const mapStateToProps = state => {
+    return {
+        orders: state.order.orders,
+        loading: state.order.loading
+    }
+}
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchOrders: () => dispatch(action.fetchOrder())
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(Orders, axios));
